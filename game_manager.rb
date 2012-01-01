@@ -20,21 +20,30 @@ unless File.exist?("test.sqlite3")
 end
 
 Shoes.app title: "Game Manager" do
-	puts "Started."
+puts "Started."
 
 stack align: "center" do
-	 background white..lightgrey
+background white..lightgrey
   para "Game Manager", size: 20
  end
  @stack_games = stack do
   games = Game.find(:all)
   games.each do |g|
-   stack do
+   game_stack = stack do
     background white..gray
-     @game_para = para link("#{g.name}"),stroke: gray, size: 15, margin_left: 5
-     @delete_button = button "Delete" do
-      Game.destroy(g.id)
-      @delete_button.hide()
+     game_para = para link("#{g.name}"),stroke: gray, size: 15, margin_left: 5
+     flow do
+       run_game = button "Run" do
+        line = File.basename(g.path)
+        cmd = system("cd #{g.path.gsub(line, "")} && \"#{g.path}\"")
+        unless cmd == true
+         alert "cd #{g.path.gsub(line, "")} && \"#{g.path}\""
+        end
+       end
+       delete_button = button "Delete" do
+        Game.destroy(g.id)
+        game_stack.clear()
+       end
      end
      inscription
     end
@@ -55,13 +64,13 @@ stack align: "center" do
       if @new_game == true
        alert "restart Game Manager to see game."
        close()
-      else 
+      else
        alert("Error Adding Game")
     end
    end
   end
-  end# if
+ end
 end
 
 puts "Exiting..."
-puts "Bye"
+puts "Good Bye"
