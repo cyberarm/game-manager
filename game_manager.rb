@@ -7,7 +7,7 @@ ActiveRecord::Base.establish_connection(
  :adapter => 'sqlite3',
  :database => 'test.sqlite3')
 
-require_relative "game"
+require_relative "lib/game"
  
 unless File.exist?("test.sqlite3")
  ActiveRecord::Schema.define do
@@ -31,7 +31,7 @@ background white..lightgrey
   games.each do |g|
    game_stack = stack do
     background white..gray
-     game_para = para link("#{g.name}"),stroke: gray, size: 15, margin_left: 5
+     game_para = para "#{g.name}", stroke: "#222", size: 15, margin_left: 5
      flow do
        run_game = button "Run" do
         line = File.basename(g.path)
@@ -50,25 +50,7 @@ background white..lightgrey
    end
  end
    button "Add Game" do
-    window width: 200, height: 200, title: "Add Game" do
-     para "Add Game", size: 15
-     para "Game Name:"
-     @name = edit_line text: ""
-     para "Game Path:"
-     button "Path" do
-      @add_game = ask_open_file
-     end
-     para
-     button "Add Game" do
-      @new_game = Game.new(:name => @name.text, :path => @add_game).save
-      if @new_game == true
-       alert "restart Game Manager to see game."
-       close()
-      else
-       alert("Error Adding Game")
-    end
-   end
-  end
+    load "./lib/add_game.rb"
  end
 end
 
