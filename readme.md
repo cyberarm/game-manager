@@ -3,5 +3,6 @@ Ruby Game Manager
 
 ## Features:
 * Game List
-* Add Game
+* Add Games
 * Install Games from Game Manager (Not Fully-Functional Yet.)
+ * WarZone2100
