@@ -1,5 +1,5 @@
 # Game Manager
-Ruby Game Manager
+A Simple Game Manager in Ruby
 
 ## Features:
 * Game List
