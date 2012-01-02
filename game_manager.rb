@@ -30,7 +30,7 @@ background white..lightgrey
   games = Game.find(:all)
   games.each do |g|
    game_stack = stack do
-    background white..gray
+    background white..lightgrey
      game_para = para "#{g.name}", stroke: "#222", size: 15, margin_left: 5
      flow do
        run_game = button "Run" do
