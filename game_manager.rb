@@ -1,5 +1,6 @@
 require "green_shoes"
 require "active_record"
+require "fileutils"
 
 puts "Starting App.."
 
@@ -17,6 +18,10 @@ unless File.exist?("test.sqlite3")
    t.timestamps
   end
  end
+end
+
+unless File.exist?("downloads")
+ FileUtils.mkdir("downloads")
 end
 
 Shoes.app title: "Game Manager" do
