@@ -32,7 +32,7 @@ stack align: "center" do
 background white..lightgrey
   para "Game Manager", size: 20
  end
- @stack_games = stack do
+ $stack_games = stack do
   games = Game.find(:all)
   games.each do |g|
    game_stack = stack do
