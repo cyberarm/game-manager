@@ -31,8 +31,11 @@ Shoes.app title: "Add Game", width: 150, height: 100 do
  end
   
   button "Add From Game Repository" do
-   alert "Feature Not Fully-Functional Yet."
-   load "./lib/repo.rb"
-   close
+   @ask = confirm "Feature Not Fully-Functional Yet. \n Continue anyways?"
+   if @ask == true
+    load "./lib/repo.rb"
+    close
+   else
+   end
  end
 end

@@ -1,5 +1,6 @@
 require "green_shoes"
 require "active_record"
+require "open-uri"
 require "fileutils"
 
 puts "Starting App.."
@@ -8,7 +9,7 @@ ActiveRecord::Base.establish_connection(
  :adapter => 'sqlite3',
  :database => 'test.sqlite3')
 
-require_relative "lib/game"
+ require_relative "lib/game"
  
 unless File.exist?("test.sqlite3")
  ActiveRecord::Schema.define do
