@@ -21,12 +21,12 @@ Shoes.app title: "Add Game", width: 150, height: 100 do
     @new_game = Game.new(:name => @name.text, :path => @add_game).save
     if @new_game == true
      alert "restart Game Manager to see game."
+     end
      close()
     else
      alert("Error Adding Game")
-    end
    end
-  end#
+  end
   close
  end
   
