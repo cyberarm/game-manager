@@ -48,16 +48,46 @@ background white..lightgrey
        end
        delete_button = button "Delete" do
         Game.destroy(g.id)
-        game_stack.clear()
+        game_stack.clear
+        $stack_games.prepend {}
        end
      end
      inscription
     end
    end
  end
-   button "Add Game" do
-    load "./lib/add_game.rb"
+
+ button "Add Game" do
+  load "./lib/add_game.rb"
  end
+ 
+  button "Refresh Games list" do
+   $stack_games.clear {
+     games = Game.find(:all)
+     games.each do |g|
+      game_stack = stack do
+       background white..lightgrey
+        game_para = para "#{g.name}", stroke: "#222", size: 15, margin_left: 5
+        flow do
+          run_game = button "Run" do
+           line = File.basename(g.path)
+           cmd = system("cd #{g.path.gsub(line, "")} && \"#{g.path}\"")
+           unless cmd == true
+            alert "cd #{g.path.gsub(line, "")} && \"#{g.path}\""
+           end
+          end
+          delete_button = button "Delete" do
+           Game.destroy(g.id)
+           game_stack.clear
+           $stack_games.prepend {}
+          end
+        end
+        inscription
+       end
+      end
+      }
+  end
+  
 end
 
 puts "Exiting..."
