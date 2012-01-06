@@ -5,4 +5,4 @@ A Simple Game Manager in Ruby
 * Game List
 * Add Games
 * Install Games from Game Manager (Not Fully-Functional Yet.)
- * [WarZone2100](http://wz2100.net)
+ * [WarZone 2100](http://wz2100.net)
